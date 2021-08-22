@@ -1,18 +1,37 @@
-import './style.css'
+// import './style.css'
+// import { sum } from './math'
 
-import Img1 from './1.jpg'
-import Img2 from './2.jpg'
+// import Img1 from './1.jpg'
+// import Img2 from './2.jpg'
 
-const img1 = document.createElement('img')
-const img2 = document.createElement('img')
-const div1 = document.createElement('div')
-div1.className = 'test'
-div1.innerHTML = 'test test test'
-img1.src = Img1
-img2.src = Img2
+// const img1 = document.createElement('img')
+// const img2 = document.createElement('img')
+// const div1 = document.createElement('div')
+// div1.className = 'test'
+// div1.innerHTML = 'test test test'
+// img1.src = Img1
+// img2.src = Img2
 
-const app = document.getElementById('app')
+// const app = document.getElementById('app')
 
-app.appendChild(img1)
-app.appendChild(img2)
-app.appendChild(div1)
+// app.appendChild(img1)
+// app.appendChild(img2)
+// app.appendChild(div1)
+
+// console.log(sum(1, 2))
+
+// setTimeout(() => {
+//   import('./dynamic-data.js').then(res => {
+//     console.log(res.default) // {message: "this is a message"}
+//   })
+// }, 1000)
+
+import moment from 'moment'
+import 'moment/locale/zh-cn'  // 手动引入中文语言包
+import $ from './jquery.min'
+
+moment.locale('zh-cn')
+
+console.log(moment().format('ll'))
+
+console.log($('#app'))

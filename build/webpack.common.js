@@ -4,7 +4,11 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 
 const webpackCommonConfig = {
-  entry: path.join(srcPatch, 'index.js'),
+  entry: {
+    index: path.join(srcPatch, 'index.js'),
+    other: path.join(srcPatch, 'other.js')
+    // path.join(srcPatch, 'index.js')
+  },
   module: {
     rules: [
       {
@@ -12,29 +16,25 @@ const webpackCommonConfig = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env']
+            presets: ['@babel/preset-env'],
+            cacheDirectory: true  // 开启缓存
           }
         },
-        exclude: /node_modules/
-      },
-      {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader', 'postcss-loader']
-      },
-      {
-        test: /\.less$/,
-        use: ['style-loader', 'css-loader', 'less-loader']
-      },
-      {
-        test: /\.(scss|sass)/,
-        use: ['style-loader', 'css-loader', 'sass-loader']
+        // use: ['babel-loader?cacheDirectory'],
+        exclude: /node_modules/  // 明确范围
       }
     ]
   },
   plugins: [
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: path.join(srcPatch, 'index.html')
+      template: path.join(srcPatch, 'index.html'),
+      chunks: ['index']
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'other.html',
+      template: path.join(srcPatch, 'other.html'),
+      chunks: ['other']
     })
   ]
 }

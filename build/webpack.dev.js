@@ -10,6 +10,18 @@ module.exports = merge(webpackCommonConfig, {
       {
         test: /\.(png|jpe?g|gif)$/,
         use: ['file-loader']
+      },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader', 'postcss-loader']   // postcss-loader 用于增加一些前缀，增强兼容性
+      },
+      {
+        test: /\.less$/,
+        use: ['style-loader', 'css-loader', 'less-loader', 'postcss-loader']
+      },
+      {
+        test: /\.(scss|sass)/,
+        use: ['style-loader', 'css-loader', 'sass-loader', 'postcss-loader']
       }
     ]
   },
