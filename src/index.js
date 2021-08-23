@@ -26,12 +26,30 @@
 //   })
 // }, 1000)
 
-import moment from 'moment'
-import 'moment/locale/zh-cn'  // 手动引入中文语言包
-import $ from './jquery.min'
+// import moment from 'moment'
+// import 'moment/locale/zh-cn'  // 手动引入中文语言包
+// // import $ from './jquery.min'
+// import { sum } from './math'
 
-moment.locale('zh-cn')
+// moment.locale('zh-cn')
 
-console.log(moment().format('ll'))
+// console.log(moment().format('ll'))
 
-console.log($('#app'))
+// // console.log($('#app'))
+// console.log(sum(1, 3))
+
+// console.log('1234')
+
+// if (module.hot) {
+//   module.hot.accept()
+// }
+
+import React from 'react'
+import ReactDOM from 'react-dom'
+
+import App from './App'
+
+ReactDOM.render(
+  <App />,
+  document.getElementById('app')
+)

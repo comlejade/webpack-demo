@@ -5,6 +5,7 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const webpackCommonConfig = require('./webpack.common')
 const { distPath } = require('./paths')
 const TerserPlugin = require('terser-webpack-plugin')
+const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin')
 
 module.exports = merge(webpackCommonConfig, {
   mode: 'production',
@@ -54,6 +55,23 @@ module.exports = merge(webpackCommonConfig, {
     new webpack.IgnorePlugin({
       resourceRegExp: /\.\/locale/, 
       contextRegExp: /moment/
+    }),
+    // 压缩并输出 js 代码
+    new ParallelUglifyPlugin({
+      uglifyJS: {
+        output: {
+          beautify: false,  // 最紧凑的输出
+          comments: false   // 删除所有的注释
+        },
+        compress: {
+          // 删除所有的 console 语句
+          drop_console: true,
+          // 内嵌定义了但是只用到一次的变量
+          collapse_vars: true,
+          // 提取出现多次但是没有定义成变量去引用的静态值
+          reduce_vars: true
+        }
+      }
     })
   ],
   optimization: {
